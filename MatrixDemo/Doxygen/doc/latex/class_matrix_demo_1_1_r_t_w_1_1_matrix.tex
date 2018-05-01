@@ -1,0 +1,330 @@
+\hypertarget{class_matrix_demo_1_1_r_t_w_1_1_matrix}{}\section{Matrix\+Demo.\+R\+T\+W.\+Matrix Class Reference}
+\label{class_matrix_demo_1_1_r_t_w_1_1_matrix}\index{Matrix\+Demo.\+R\+T\+W.\+Matrix@{Matrix\+Demo.\+R\+T\+W.\+Matrix}}
+
+
+The matrix class stores a matrix of doubles. It uses an indexer to access elements and properties for readonly values of rows and columns. It also uses operator overloading to support matrix additoin, matrix subtraction, matrix inversion, scalar multiplication, and matrix multiplication. In addition, it has several methods to perform operations including transposition, reducing to reduced row echelon form, inversion, and computing determinants.  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix_a8c22efc901ad89be3078a180a7ac15d0}{Matrix}} (int rows, int cols)
+\begin{DoxyCompactList}\small\item\em Creates a zero matrix with the specified number of rows and columns. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix_ad2a320fd0c86551f34070679fd43433c}{Matrix}} (double\mbox{[},\mbox{]} e)
+\begin{DoxyCompactList}\small\item\em Creates a matrix and populates it with entries from a given array of doubles. The matrix is not backed by the 2-\/dimensional array of doubles, so changes in one will not affect the other. For a \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix}{Matrix}} backed by the array of doubles, use \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix_ac23641ac04b3c3baf14174bdf9049db2}{operator double\mbox{[},\mbox{]}}}. \end{DoxyCompactList}\item 
+double \mbox{[},\mbox{]} \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix_a9f6f8e0e7acfbdd55852f258daf68b8f}{Get\+Entries}} ()
+\begin{DoxyCompactList}\small\item\em Returns a 2-\/dimensional array of doubles reflecting the entries in the matrix. The resulting 2-\/dimensional array is not backed by the matrix, so changes in one will not affect the other. For a backed 2-\/dimensional array of doubles, use \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix_a0c737f7e6b54edac4d26b4f1c595ee92}{operator Matrix}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static implicit \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix_ac23641ac04b3c3baf14174bdf9049db2}{operator double\mbox{[},\mbox{]}}} (\mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix}{Matrix}} m)
+\begin{DoxyCompactList}\small\item\em Converts a \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix}{Matrix}} to a 2-\/dimensional array of doubles. The resulting 2-\/dimensional array is backed by the matrix, so changes in one will affect the other. For a 2-\/dimensional array of entries not backed by the matrix, use \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix_a9f6f8e0e7acfbdd55852f258daf68b8f}{Get\+Entries}}. \end{DoxyCompactList}\item 
+static implicit \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix_a0c737f7e6b54edac4d26b4f1c595ee92}{operator Matrix}} (double\mbox{[},\mbox{]} e)
+\begin{DoxyCompactList}\small\item\em Converts a 2-\/dimensional array of doubles to a matrix. The resulting matrix is backed by the array, so changes in one will affect the other. For a \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix}{Matrix}} not backed by the 2-\/dimensional array of entries, use \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix_ad2a320fd0c86551f34070679fd43433c}{Matrix.\+Matrix(double\mbox{[},\mbox{]})}}. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix}{Matrix}} \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix_a6c0787446dfff85088742793f129729a}{operator+}} (\mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix}{Matrix}} lhs, \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix}{Matrix}} rhs)
+\begin{DoxyCompactList}\small\item\em Returns the matrix sum of the two matrices. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix}{Matrix}} \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix_a7d96c0cc84a8ae412014464007fbb576}{operator-\/}} (\mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix}{Matrix}} lhs, \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix}{Matrix}} rhs)
+\begin{DoxyCompactList}\small\item\em Returns the matrix difference of the two matrices. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix}{Matrix}} \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix_a115c01ce2236a801cfa99bb685aea0ff}{operator-\/}} (\mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix}{Matrix}} m)
+\begin{DoxyCompactList}\small\item\em Takes the opposite of the given matrix. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix}{Matrix}} \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix_ae315e38f4441e1df65dd5226b55314ea}{operator$\ast$}} (double s, \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix}{Matrix}} m)
+\begin{DoxyCompactList}\small\item\em Scales a matrix by a scalar. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix}{Matrix}} \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix_a5d72530d3d2ddc47341e82ec1a076b71}{operator$\ast$}} (\mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix}{Matrix}} lhs, \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix}{Matrix}} rhs)
+\begin{DoxyCompactList}\small\item\em Performs matrix multiplication. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix_a9596bae43484cf8c21729237297b4744}{Rows}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The number of rows in the matrix \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix_a7b412909ff1b6c6b9c9af57314dff52b}{Cols}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The number of columns in the matrix \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix_aa908f44fc8fd669347ba6a4833406f66}{this\mbox{[}int row, int col\mbox{]}}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Accesses a specific entry in the matrix. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The matrix class stores a matrix of doubles. It uses an indexer to access elements and properties for readonly values of rows and columns. It also uses operator overloading to support matrix additoin, matrix subtraction, matrix inversion, scalar multiplication, and matrix multiplication. In addition, it has several methods to perform operations including transposition, reducing to reduced row echelon form, inversion, and computing determinants. 
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_matrix_demo_1_1_r_t_w_1_1_matrix_a8c22efc901ad89be3078a180a7ac15d0}\label{class_matrix_demo_1_1_r_t_w_1_1_matrix_a8c22efc901ad89be3078a180a7ac15d0}} 
+\index{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix@{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix}!Matrix@{Matrix}}
+\index{Matrix@{Matrix}!Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix@{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix}}
+\subsubsection{\texorpdfstring{Matrix()}{Matrix()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Matrix\+Demo.\+R\+T\+W.\+Matrix.\+Matrix (\begin{DoxyParamCaption}\item[{int}]{rows,  }\item[{int}]{cols }\end{DoxyParamCaption})}
+
+
+
+Creates a zero matrix with the specified number of rows and columns. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rows} & the number of rows for the matrix.\\
+\hline
+{\em cols} & the number of columns for the matrix.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_matrix_demo_1_1_r_t_w_1_1_matrix_ad2a320fd0c86551f34070679fd43433c}\label{class_matrix_demo_1_1_r_t_w_1_1_matrix_ad2a320fd0c86551f34070679fd43433c}} 
+\index{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix@{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix}!Matrix@{Matrix}}
+\index{Matrix@{Matrix}!Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix@{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix}}
+\subsubsection{\texorpdfstring{Matrix()}{Matrix()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Matrix\+Demo.\+R\+T\+W.\+Matrix.\+Matrix (\begin{DoxyParamCaption}\item[{double}]{e\mbox{[},\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Creates a matrix and populates it with entries from a given array of doubles. The matrix is not backed by the 2-\/dimensional array of doubles, so changes in one will not affect the other. For a \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix}{Matrix}} backed by the array of doubles, use \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix_ac23641ac04b3c3baf14174bdf9049db2}{operator double\mbox{[},\mbox{]}}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The entries to use to populate the matrix.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix_ac23641ac04b3c3baf14174bdf9049db2}{operator double\mbox{[},\mbox{]}}}
+
+
+\end{DoxySeeAlso}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_matrix_demo_1_1_r_t_w_1_1_matrix_a9f6f8e0e7acfbdd55852f258daf68b8f}\label{class_matrix_demo_1_1_r_t_w_1_1_matrix_a9f6f8e0e7acfbdd55852f258daf68b8f}} 
+\index{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix@{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix}!Get\+Entries@{Get\+Entries}}
+\index{Get\+Entries@{Get\+Entries}!Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix@{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix}}
+\subsubsection{\texorpdfstring{Get\+Entries()}{GetEntries()}}
+{\footnotesize\ttfamily double \mbox{[},\mbox{]} Matrix\+Demo.\+R\+T\+W.\+Matrix.\+Get\+Entries (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns a 2-\/dimensional array of doubles reflecting the entries in the matrix. The resulting 2-\/dimensional array is not backed by the matrix, so changes in one will not affect the other. For a backed 2-\/dimensional array of doubles, use \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix_a0c737f7e6b54edac4d26b4f1c595ee92}{operator Matrix}}. 
+
+\begin{DoxyReturn}{Returns}
+A copy of the entries of the \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix}{Matrix}}.
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix_a0c737f7e6b54edac4d26b4f1c595ee92}{operator Matrix}}
+
+
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_matrix_demo_1_1_r_t_w_1_1_matrix_ac23641ac04b3c3baf14174bdf9049db2}\label{class_matrix_demo_1_1_r_t_w_1_1_matrix_ac23641ac04b3c3baf14174bdf9049db2}} 
+\index{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix@{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix}!operator double\mbox{[},\mbox{]}@{operator double[,]}}
+\index{operator double\mbox{[},\mbox{]}@{operator double[,]}!Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix@{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix}}
+\subsubsection{\texorpdfstring{operator double[,]()}{operator double[,]()}}
+{\footnotesize\ttfamily static implicit Matrix\+Demo.\+R\+T\+W.\+Matrix.\+operator double\mbox{[},\mbox{]} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix}{Matrix}}}]{m }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Converts a \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix}{Matrix}} to a 2-\/dimensional array of doubles. The resulting 2-\/dimensional array is backed by the matrix, so changes in one will affect the other. For a 2-\/dimensional array of entries not backed by the matrix, use \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix_a9f6f8e0e7acfbdd55852f258daf68b8f}{Get\+Entries}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & the matrix to convert.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix_a9f6f8e0e7acfbdd55852f258daf68b8f}{Get\+Entries}}
+
+
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_matrix_demo_1_1_r_t_w_1_1_matrix_a0c737f7e6b54edac4d26b4f1c595ee92}\label{class_matrix_demo_1_1_r_t_w_1_1_matrix_a0c737f7e6b54edac4d26b4f1c595ee92}} 
+\index{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix@{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix}!operator Matrix@{operator Matrix}}
+\index{operator Matrix@{operator Matrix}!Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix@{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix}}
+\subsubsection{\texorpdfstring{operator Matrix()}{operator Matrix()}}
+{\footnotesize\ttfamily static implicit Matrix\+Demo.\+R\+T\+W.\+Matrix.\+operator \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix}{Matrix}} (\begin{DoxyParamCaption}\item[{double}]{e\mbox{[},\mbox{]} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Converts a 2-\/dimensional array of doubles to a matrix. The resulting matrix is backed by the array, so changes in one will affect the other. For a \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix}{Matrix}} not backed by the 2-\/dimensional array of entries, use \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix_ad2a320fd0c86551f34070679fd43433c}{Matrix.\+Matrix(double\mbox{[},\mbox{]})}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The 2-\/dimensional array of doubles to convert.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix_ad2a320fd0c86551f34070679fd43433c}{Matrix.\+Matrix(double\mbox{[},\mbox{]})}}
+
+
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_matrix_demo_1_1_r_t_w_1_1_matrix_ae315e38f4441e1df65dd5226b55314ea}\label{class_matrix_demo_1_1_r_t_w_1_1_matrix_ae315e38f4441e1df65dd5226b55314ea}} 
+\index{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix@{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix@{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix}}
+\subsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix}{Matrix}} Matrix\+Demo.\+R\+T\+W.\+Matrix.\+operator$\ast$ (\begin{DoxyParamCaption}\item[{double}]{s,  }\item[{\mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix}{Matrix}}}]{m }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Scales a matrix by a scalar. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & The scalar by which to scale the matrix.\\
+\hline
+{\em m} & The matrix to be scaled.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A matrix containing each entry in 
+\begin{DoxyCode}
+m
+\end{DoxyCode}
+ scaled by 
+\begin{DoxyCode}
+s
+\end{DoxyCode}
+.
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_matrix_demo_1_1_r_t_w_1_1_matrix_a5d72530d3d2ddc47341e82ec1a076b71}\label{class_matrix_demo_1_1_r_t_w_1_1_matrix_a5d72530d3d2ddc47341e82ec1a076b71}} 
+\index{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix@{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix@{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix}}
+\subsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix}{Matrix}} Matrix\+Demo.\+R\+T\+W.\+Matrix.\+operator$\ast$ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix}{Matrix}}}]{lhs,  }\item[{\mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix}{Matrix}}}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Performs matrix multiplication. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & The left hand side of the multiplication.\\
+\hline
+{\em rhs} & The right hand side of the multiplication.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The product of the two matrices.
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_bad_dimension_exception}{Bad\+Dimension\+Exception}}} & Thrown if the number of columns in the left hand side is different from the number of rows in the right hand side.\\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{class_matrix_demo_1_1_r_t_w_1_1_matrix_a6c0787446dfff85088742793f129729a}\label{class_matrix_demo_1_1_r_t_w_1_1_matrix_a6c0787446dfff85088742793f129729a}} 
+\index{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix@{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix}!operator+@{operator+}}
+\index{operator+@{operator+}!Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix@{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix}}
+\subsubsection{\texorpdfstring{operator+()}{operator+()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix}{Matrix}} Matrix\+Demo.\+R\+T\+W.\+Matrix.\+operator+ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix}{Matrix}}}]{lhs,  }\item[{\mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix}{Matrix}}}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Returns the matrix sum of the two matrices. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & The left hand side of the addition.\\
+\hline
+{\em rhs} & The right hand side of the addition.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The sum of the two matrices.
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_bad_dimension_exception}{Bad\+Dimension\+Exception}}} & Thrown when the two matrices are of different dimensions.\\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{class_matrix_demo_1_1_r_t_w_1_1_matrix_a7d96c0cc84a8ae412014464007fbb576}\label{class_matrix_demo_1_1_r_t_w_1_1_matrix_a7d96c0cc84a8ae412014464007fbb576}} 
+\index{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix@{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix@{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix}}
+\subsubsection{\texorpdfstring{operator-\/()}{operator-()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix}{Matrix}} Matrix\+Demo.\+R\+T\+W.\+Matrix.\+operator-\/ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix}{Matrix}}}]{lhs,  }\item[{\mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix}{Matrix}}}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Returns the matrix difference of the two matrices. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & The left hand side of the subtraction.\\
+\hline
+{\em rhs} & The right hand side of the subtraction.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The difference of the two matrices.
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_bad_dimension_exception}{Bad\+Dimension\+Exception}}} & Thrown when the two matrices are of different dimensions.\\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{class_matrix_demo_1_1_r_t_w_1_1_matrix_a115c01ce2236a801cfa99bb685aea0ff}\label{class_matrix_demo_1_1_r_t_w_1_1_matrix_a115c01ce2236a801cfa99bb685aea0ff}} 
+\index{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix@{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix@{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix}}
+\subsubsection{\texorpdfstring{operator-\/()}{operator-()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix}{Matrix}} Matrix\+Demo.\+R\+T\+W.\+Matrix.\+operator-\/ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix}{Matrix}}}]{m }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Takes the opposite of the given matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & The \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix}{Matrix}} to find the opposite of.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The opposite of the given matrix. Subtracting 
+\begin{DoxyCode}
+m
+\end{DoxyCode}
+ from another matrix is equivalent to adding 
+\begin{DoxyCode}
+-m
+\end{DoxyCode}
+ to it.
+\end{DoxyReturn}
+
+
+\subsection{Property Documentation}
+\mbox{\Hypertarget{class_matrix_demo_1_1_r_t_w_1_1_matrix_a7b412909ff1b6c6b9c9af57314dff52b}\label{class_matrix_demo_1_1_r_t_w_1_1_matrix_a7b412909ff1b6c6b9c9af57314dff52b}} 
+\index{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix@{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix}!Cols@{Cols}}
+\index{Cols@{Cols}!Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix@{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix}}
+\subsubsection{\texorpdfstring{Cols}{Cols}}
+{\footnotesize\ttfamily int Matrix\+Demo.\+R\+T\+W.\+Matrix.\+Cols\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+The number of columns in the matrix 
+
+\mbox{\Hypertarget{class_matrix_demo_1_1_r_t_w_1_1_matrix_a9596bae43484cf8c21729237297b4744}\label{class_matrix_demo_1_1_r_t_w_1_1_matrix_a9596bae43484cf8c21729237297b4744}} 
+\index{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix@{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix}!Rows@{Rows}}
+\index{Rows@{Rows}!Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix@{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix}}
+\subsubsection{\texorpdfstring{Rows}{Rows}}
+{\footnotesize\ttfamily int Matrix\+Demo.\+R\+T\+W.\+Matrix.\+Rows\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+The number of rows in the matrix 
+
+\mbox{\Hypertarget{class_matrix_demo_1_1_r_t_w_1_1_matrix_aa908f44fc8fd669347ba6a4833406f66}\label{class_matrix_demo_1_1_r_t_w_1_1_matrix_aa908f44fc8fd669347ba6a4833406f66}} 
+\index{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix@{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix}!this\mbox{[}int row, int col\mbox{]}@{this[int row, int col]}}
+\index{this\mbox{[}int row, int col\mbox{]}@{this[int row, int col]}!Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix@{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix}}
+\subsubsection{\texorpdfstring{this[int row, int col]}{this[int row, int col]}}
+{\footnotesize\ttfamily double Matrix\+Demo.\+R\+T\+W.\+Matrix.\+this\mbox{[}int row, int col\mbox{]}\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Accesses a specific entry in the matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em row} & the row of the entry to access.\\
+\hline
+{\em col} & the column of the entry to access.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Index\+Out\+Of\+Range\+Exception} & Thrown if the row or column index is out of bounds.\\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Nathann Hohnbaum/\+Source/\+Repos/\+Matrix-\/\+Program/\+Matrix\+Demo/\+Matrix\+Demo/\+R\+T\+W/\mbox{\hyperlink{_matrix_8cs}{Matrix.\+cs}}\end{DoxyCompactItemize}
