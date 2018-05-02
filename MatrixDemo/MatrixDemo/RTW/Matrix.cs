@@ -170,9 +170,12 @@ namespace MatrixDemo.RTW
         /// <seealso cref="Matrix.Matrix(double[,])"/>
         public static implicit operator Matrix(double[,] e)
         {
-            Matrix ret = new Matrix();
-            ret.rows = e.GetLength(0);
-            ret.cols = e.GetLength(1);
+            Matrix ret = new Matrix
+            {
+                rows = e.GetLength(0),
+                cols = e.GetLength(1),
+                entries = e
+            };
             return ret;
         }
 
@@ -286,6 +289,212 @@ namespace MatrixDemo.RTW
                 }
                 return res;
             });
+        }
+
+        /// <summary>
+        /// Returns the message for incompatible dimensions on uniary operations.
+        /// </summary>
+        /// <returns>The message for incompatible dimensions on uniary matrix operations.</returns>
+        private String BadDimensionMessage()
+        {
+            return "Incompatible Dimension: " + rows + "x" + cols;
+        }
+
+        /// <summary>
+        /// Checks to make sure that this matrix is square.
+        /// </summary>
+        /// <exception cref="BadDimensionMessage">Thrown when this matrix is not square.</exception>
+        private void CheckSquare()
+        {
+            if (Rows != Cols)
+                throw new BadDimensionException(BadDimensionMessage());
+        }
+
+        // Row Operations
+
+        /// <summary>
+        /// Swaps two rows.
+        /// </summary>
+        /// <param name="r1">The first row to swap.</param>
+        /// <param name="r2">The second row to swap.</param>
+        private void RowSwap(int r1, int r2)
+        {
+            for (int c = 0; c < Cols; c++)
+            {
+                double temp = entries[r1, c];
+                entries[r1, c] = entries[r2, c];
+                entries[r2, c] = temp;
+            }
+        }
+
+        /// <summary>
+        /// Scales row r by scalar s.
+        /// </summary>
+        /// <param name="r">The row to scale.</param>
+        /// <param name="s">The scalar by which to scale the row.</param>
+        private void RowScale(int r, double s)
+        {
+            for (int c = 0; c < Cols; c++)
+            {
+                entries[r, c] = s * entries[r, c];
+            }
+        }
+
+        /// <summary>
+        /// Adds s copies of r1 to r2.
+        /// </summary>
+        /// <param name="r2">The row to add.</param>
+        /// <param name="r2">The row to be added to.</param>
+        /// <param name="s">The scalar by which to multiply the row to be added.</param>
+        private void RowAdd(int r1, int r2, double s)
+        {
+            for (int c = 0; c < Cols; c++)
+            {
+                entries[r2, c] = entries[r2, c] + s * entries[r1, c];
+            }
+        }
+
+        /// <summary>
+        /// Converts this matrix to Reduced Row Echelon Form.
+        /// </summary>
+        public void Reduce()
+        {
+            int pivot = 0;
+            int row = 0;
+            while (row < Rows && pivot < Cols)
+            {
+                // Attempt to place a nonzero entry in the pivot spot
+                if (entries[row, pivot] == 0)
+                {
+                    int row2 = row + 1;
+                    while (row2 < Rows && entries[row2, pivot] == 0)
+                    {
+                        row2++;
+                    }
+                    // If nonzero entry found in the column, swap the row tobring it up.
+                    if (row2 < Rows)
+                    {
+                        RowSwap(row, row2);
+                    }
+                }
+                // If nonzero entry in the pivot spot, turn it to a 1 and zero out the rest of the column.
+                if (entries[row, pivot] != 0)
+                {
+                    // Scale the row.
+                    RowScale(row, 1 / entries[row, pivot]);
+                    // Zero out the other rows
+                    for (int row2=0; row2<rows; row2++)
+                    {
+                        if (row == row2)
+                            continue; // Don't zero out the row itself.
+                        RowAdd(row, row2, -entries[row2, pivot]);
+                    }
+                    // Increment the row
+                    row++;
+                }
+                // Increment the pivot
+                pivot++;
+            }
+        }
+
+        /// <summary>
+        /// Returns the Reduced Row Echelon form of this matrix.  This matrix its4elf is unaltered.
+        /// </summary>
+        /// <returns>the reduced row echelon form of this matrix.</returns>
+        public Matrix RREF()
+        {
+            Matrix ret = new Matrix(entries);
+            ret.Reduce();
+            return ret;
+        }
+
+        /// <summary>
+        /// Calculates the determinant of this matrix.
+        /// </summary>
+        /// <returns>the determinant of this matrix.</returns>
+        /// <exception cref="BadDimensionException">Thrown when the matrix is not square.</exception>
+        public double Determinant()
+        {
+            CheckSquare();
+            // Initialize variable to track changes in the determinant of the matrix as row operations are performed to convert a copy of this matrix to an upper triangular matrix.
+            double det = 1;
+            // Initialize temporary matrix to convert to upper triangular.
+            Matrix temp = new Matrix(entries);
+
+            // Convert copy of this matrix to upper triangular form.
+
+            for (int col=0; col<Cols; col++)
+            {
+                // Place a nonzero entry in the main diagonal.
+                if (entries[col,col] == 0)
+                {
+                    int row = col + 1;
+                    while (row<Rows && entries[row,col]==0)
+                    {
+                        row++;
+                    }
+                    if (row >= Rows)
+                    {
+                        return 0; // The main diagonal has to have a zero entry, so the determinant is zero.
+                    }
+                    else
+                    {
+                        RowSwap(row, col);
+                        det = -det;
+                    }
+                }
+                // Zero out everything below
+                for (int row=col+1; row<Rows; row++)
+                {
+                    RowAdd(col, row, -entries[row, col] / entries[col, col]);
+                }
+                // Multiply by the entry on the main diagonal.
+                det *= entries[col, col];
+            }
+            return det;
+        }
+
+        /// <summary>
+        /// Returns the inverse of this matrix if it exists.
+        /// </summary>
+        /// <returns>Returns the inverse of this matrix if it exists, null otherwise.</returns>
+        /// <exception cref="BadDimensionException">Thrown when the matrix is not square.</exception>
+        public Matrix Inverse()
+        {
+            CheckSquare();
+            // Create a matrix with the left hand side being this matrix and the right hand side being the identity.
+            Matrix temp = new Matrix(Rows * 2, Cols);
+            for (int r=0; r<Rows; r++)
+            {
+                for (int c=0; c<Cols; c++)
+                {
+                    temp[r, c] = entries[r, c];
+                }
+                temp[r, r + cols] = 1;
+            }
+            // Perform Gausian elimination.
+            temp.Reduce();
+            // Copy the right hand side of the matrix into a return matrix.
+            Matrix ret = new Matrix(rows, cols);
+            for (int r=0; r<Rows; r++)
+            {
+                if (temp[r, r] == 0)
+                    return null; // The left hand side of the matrix is not the identity, so the determinant does not exist.
+                for (int c=0; c<Cols; c++)
+                {
+                    ret[r, c] = temp[r, c + cols];
+                }
+            }
+            return ret;
+        }
+
+        /// <summary>
+        /// Returns the tramspose of this matrix.
+        /// </summary>
+        /// <returns>The transpose of this matrix.</returns>
+        public Matrix Transpose()
+        {
+            return MatrixFromSource(cols, rows, (int r, int c) => entries[c, r]);
         }
 
     }
