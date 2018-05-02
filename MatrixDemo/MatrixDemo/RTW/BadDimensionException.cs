@@ -15,6 +15,7 @@ namespace MatrixDemo.RTW
     /// </summary>
     public class BadDimensionException : Exception
     {
+
         public BadDimensionException() : base()
         {
 
