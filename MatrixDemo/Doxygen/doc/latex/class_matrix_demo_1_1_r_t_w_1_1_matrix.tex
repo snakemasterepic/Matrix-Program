@@ -11,9 +11,9 @@ The matrix class stores a matrix of doubles. It uses an indexer to access elemen
 \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix_a8c22efc901ad89be3078a180a7ac15d0}{Matrix}} (int rows, int cols)
 \begin{DoxyCompactList}\small\item\em Creates a zero matrix with the specified number of rows and columns. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix_ad2a320fd0c86551f34070679fd43433c}{Matrix}} (double\mbox{[},\mbox{]} e)
-\begin{DoxyCompactList}\small\item\em Creates a matrix and populates it with entries from a given array of doubles. The matrix is not backed by the 2-\/dimensional array of doubles, so changes in one will not affect the other. For a \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix}{Matrix}} backed by the array of doubles, use \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix_ac23641ac04b3c3baf14174bdf9049db2}{operator double\mbox{[},\mbox{]}}}. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Creates a matrix and populates it with entries from a given array of doubles. The matrix is not backed by the 2-\/dimensional array of doubles, so changes in one will not affect the other. For a \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix}{Matrix}} backed by the array of doubles, use \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix_a0c737f7e6b54edac4d26b4f1c595ee92}{operator Matrix}}. \end{DoxyCompactList}\item 
 double \mbox{[},\mbox{]} \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix_a9f6f8e0e7acfbdd55852f258daf68b8f}{Get\+Entries}} ()
-\begin{DoxyCompactList}\small\item\em Returns a 2-\/dimensional array of doubles reflecting the entries in the matrix. The resulting 2-\/dimensional array is not backed by the matrix, so changes in one will not affect the other. For a backed 2-\/dimensional array of doubles, use \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix_a0c737f7e6b54edac4d26b4f1c595ee92}{operator Matrix}}. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Returns a 2-\/dimensional array of doubles reflecting the entries in the matrix. The resulting 2-\/dimensional array is not backed by the matrix, so changes in one will not affect the other. For a backed 2-\/dimensional array of doubles, use \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix_ac23641ac04b3c3baf14174bdf9049db2}{operator double\mbox{[},\mbox{]}}}. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix_a14fc1e8ce8136690364961901e7becf6}{Reduce}} ()
 \begin{DoxyCompactList}\small\item\em Converts this matrix to Reduced Row Echelon Form. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix}{Matrix}} \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix_ab5b22330a32e73b322522e9c60b8502e}{R\+R\+EF}} ()
@@ -94,7 +94,7 @@ Creates a zero matrix with the specified number of rows and columns.
 
 
 
-Creates a matrix and populates it with entries from a given array of doubles. The matrix is not backed by the 2-\/dimensional array of doubles, so changes in one will not affect the other. For a \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix}{Matrix}} backed by the array of doubles, use \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix_ac23641ac04b3c3baf14174bdf9049db2}{operator double\mbox{[},\mbox{]}}}. 
+Creates a matrix and populates it with entries from a given array of doubles. The matrix is not backed by the 2-\/dimensional array of doubles, so changes in one will not affect the other. For a \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix}{Matrix}} backed by the array of doubles, use \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix_a0c737f7e6b54edac4d26b4f1c595ee92}{operator Matrix}}. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -102,7 +102,7 @@ Creates a matrix and populates it with entries from a given array of doubles. Th
 \hline
 \end{DoxyParams}
 \begin{DoxySeeAlso}{See also}
-\mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix_ac23641ac04b3c3baf14174bdf9049db2}{operator double\mbox{[},\mbox{]}}}
+\mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix_a0c737f7e6b54edac4d26b4f1c595ee92}{operator Matrix}}
 
 
 \end{DoxySeeAlso}
@@ -153,13 +153,13 @@ True if the objects are equal, false otherwise.
 
 
 
-Returns a 2-\/dimensional array of doubles reflecting the entries in the matrix. The resulting 2-\/dimensional array is not backed by the matrix, so changes in one will not affect the other. For a backed 2-\/dimensional array of doubles, use \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix_a0c737f7e6b54edac4d26b4f1c595ee92}{operator Matrix}}. 
+Returns a 2-\/dimensional array of doubles reflecting the entries in the matrix. The resulting 2-\/dimensional array is not backed by the matrix, so changes in one will not affect the other. For a backed 2-\/dimensional array of doubles, use \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix_ac23641ac04b3c3baf14174bdf9049db2}{operator double\mbox{[},\mbox{]}}}. 
 
 \begin{DoxyReturn}{Returns}
 A copy of the entries of the \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix}{Matrix}}.
 \end{DoxyReturn}
 \begin{DoxySeeAlso}{See also}
-\mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix_a0c737f7e6b54edac4d26b4f1c595ee92}{operator Matrix}}
+\mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix_ac23641ac04b3c3baf14174bdf9049db2}{operator double\mbox{[},\mbox{]}}}
 
 
 \end{DoxySeeAlso}
@@ -252,15 +252,7 @@ Scales a matrix by a scalar.
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-A matrix containing each entry in 
-\begin{DoxyCode}
-m
-\end{DoxyCode}
- scaled by 
-\begin{DoxyCode}
-s
-\end{DoxyCode}
-.
+A matrix containing each entry in {\ttfamily m} scaled by {\ttfamily s}.
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_matrix_demo_1_1_r_t_w_1_1_matrix_a5d72530d3d2ddc47341e82ec1a076b71}\label{class_matrix_demo_1_1_r_t_w_1_1_matrix_a5d72530d3d2ddc47341e82ec1a076b71}} 
 \index{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix@{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix}!operator$\ast$@{operator$\ast$}}
@@ -353,15 +345,7 @@ Takes the opposite of the given matrix.
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-The opposite of the given matrix. Subtracting 
-\begin{DoxyCode}
-m
-\end{DoxyCode}
- from another matrix is equivalent to adding 
-\begin{DoxyCode}
--m
-\end{DoxyCode}
- to it.
+The opposite of the given matrix. Subtracting {\ttfamily m} from another matrix is equivalent to adding {\ttfamily -\/m} to it.
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_matrix_demo_1_1_r_t_w_1_1_matrix_a14fc1e8ce8136690364961901e7becf6}\label{class_matrix_demo_1_1_r_t_w_1_1_matrix_a14fc1e8ce8136690364961901e7becf6}} 
 \index{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix@{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix}!Reduce@{Reduce}}

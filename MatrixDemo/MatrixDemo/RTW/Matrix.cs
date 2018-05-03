@@ -97,10 +97,10 @@ namespace MatrixDemo.RTW
         }
 
         /// <summary>
-        /// Creates a matrix and populates it with entries from a given array of doubles.  The matrix is not backed by the 2-dimensional array of doubles, so changes in one will not affect the other.  For a Matrix backed by the array of doubles, use <see cref="operator double[,]"/>.
+        /// Creates a matrix and populates it with entries from a given array of doubles.  The matrix is not backed by the 2-dimensional array of doubles, so changes in one will not affect the other.  For a Matrix backed by the array of doubles, use <see cref="operator Matrix"/>.
         /// </summary>
         /// <param name="e">The entries to use to populate the matrix.</param>
-        /// <seealso cref="operator double[,]"/>
+        /// <seealso cref="operator Matrix"/>
         public Matrix(double[,] e)
         {
             entries = new double[e.GetLength(0), e.GetLength(1)];
@@ -122,10 +122,10 @@ namespace MatrixDemo.RTW
         }
 
         /// <summary>
-        /// Returns a 2-dimensional array of doubles reflecting the entries in the matrix.  The resulting 2-dimensional array is not backed by the matrix, so changes in one will not affect the other.  For a backed 2-dimensional array of doubles, use <see cref="operator Matrix"/>.
+        /// Returns a 2-dimensional array of doubles reflecting the entries in the matrix.  The resulting 2-dimensional array is not backed by the matrix, so changes in one will not affect the other.  For a backed 2-dimensional array of doubles, use <see cref="operator double[,]"/>.
         /// </summary>
         /// <returns>A copy of the entries of the Matrix.</returns>
-        /// <seealso cref="operator Matrix"/>
+        /// <seealso cref="operator double[,]"/>
         public double[,] GetEntries()
         {
             double[,] ret = new double[Rows, Cols];
@@ -236,7 +236,7 @@ namespace MatrixDemo.RTW
         /// Takes the opposite of the given matrix.
         /// </summary>
         /// <param name="m">The Matrix to find the opposite of.</param>
-        /// <returns>The opposite of the given matrix.  Subtracting <code>m</code> from another matrix is equivalent to adding <code>-m</code> to it.</returns>
+        /// <returns>The opposite of the given matrix.  Subtracting <c>m</c> from another matrix is equivalent to adding <c>-m</c> to it.</returns>
         public static Matrix operator -(Matrix m)
         {
             return MatrixFromSource(m.Rows, m.Cols, (int r, int c) => -m[r, c]);
@@ -247,7 +247,7 @@ namespace MatrixDemo.RTW
         /// </summary>
         /// <param name="s">The scalar by which to scale the matrix.</param>
         /// <param name="m">The matrix to be scaled.</param>
-        /// <returns>A matrix containing each entry in <code>m</code> scaled by <code>s</code>.</returns>
+        /// <returns>A matrix containing each entry in <c>m</c> scaled by <c>s</c>.</returns>
         public static Matrix operator *(double s, Matrix m)
         {
             return MatrixFromSource(m.Rows, m.Cols, (int r, int c) => s * m[r, c]);
