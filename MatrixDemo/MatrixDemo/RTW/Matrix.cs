@@ -10,8 +10,6 @@ using System.Threading.Tasks;
 /// </summary>
 namespace MatrixDemo.RTW
 {
-
-
     /// <summary>
     /// The matrix class stores a matrix of doubles.  It uses an indexer to access elements and properties for readonly values of rows and columns.  It also uses operator overloading to support matrix additoin, matrix subtraction, matrix inversion, scalar multiplication, and matrix multiplication.  In addition, it has several methods to perform operations including transposition, reducing to reduced row echelon form, inversion, and computing determinants.
     /// </summary>
@@ -30,15 +28,6 @@ namespace MatrixDemo.RTW
         /// </summary>
         private double[,] entries;
 
-        /// <summary>
-        /// The number of rows
-        /// </summary>
-        private int rows;
-
-        /// <summary>
-        /// The number of columns
-        /// </summary>
-        private int cols;
 
         /// <summary>
         /// The number of rows in the matrix
@@ -47,7 +36,7 @@ namespace MatrixDemo.RTW
         {
             get
             {
-                return rows;
+                return entries.GetLength(0);
             }
         }
         /// <summary>
@@ -57,7 +46,7 @@ namespace MatrixDemo.RTW
         {
             get
             {
-                return cols;
+                return entries.GetLength(1);
             }
         }
 
@@ -99,11 +88,12 @@ namespace MatrixDemo.RTW
         /// </summary>
         /// <param name="rows">the number of rows for the matrix.</param>
         /// <param name="cols">the number of columns for the matrix.</param>
+        /// <exception cref="ArgumentException">Thrown if either or both of the dimensions is negative.</exception>
         public Matrix(int rows, int cols)
         {
-            this.rows = rows;
-            this.cols = cols;
-            entries = new double[Rows, Cols];
+            if (rows <= 0 || cols <= 0)
+                throw new ArgumentException("Both dimensions must be positive.");
+            entries = new double[rows, cols];
         }
 
 
@@ -115,12 +105,10 @@ namespace MatrixDemo.RTW
         /// <seealso cref="operator double[,]"/>
         public Matrix(double[,] e)
         {
-            rows = e.GetLength(0);
-            cols = e.GetLength(1);
-            entries = new double[Rows, Cols];
-            for (int i = 0; i < rows; i++)
+            entries = new double[e.GetLength(0), e.GetLength(1)];
+            for (int i = 0; i < Rows; i++)
             {
-                for (int j = 0; j < cols; j++)
+                for (int j = 0; j < Cols; j++)
                 {
                     entries[i, j] = e[i, j];
                 }
@@ -142,10 +130,10 @@ namespace MatrixDemo.RTW
         /// <seealso cref="operator Matrix"/>
         public double[,] GetEntries()
         {
-            double[,] ret = new double[rows, cols];
-            for (int i = 0; i < rows; i++)
+            double[,] ret = new double[Rows, Cols];
+            for (int i = 0; i < Rows; i++)
             {
-                for (int j = 0; j < cols; j++)
+                for (int j = 0; j < Cols; j++)
                 {
                     ret[i, j] = entries[i, j];
                 }
@@ -172,8 +160,6 @@ namespace MatrixDemo.RTW
         {
             Matrix ret = new Matrix
             {
-                rows = e.GetLength(0),
-                cols = e.GetLength(1),
                 entries = e
             };
             return ret;
@@ -297,7 +283,7 @@ namespace MatrixDemo.RTW
         /// <returns>The message for incompatible dimensions on uniary matrix operations.</returns>
         private String BadDimensionMessage()
         {
-            return "Incompatible Dimension: " + rows + "x" + cols;
+            return "Incompatible Dimension: " + Rows + "x" + Cols;
         }
 
         /// <summary>
@@ -383,7 +369,7 @@ namespace MatrixDemo.RTW
                     // Scale the row.
                     RowScale(row, 1 / entries[row, pivot]);
                     // Zero out the other rows
-                    for (int row2=0; row2<rows; row2++)
+                    for (int row2=0; row2<Rows; row2++)
                     {
                         if (row == row2)
                             continue; // Don't zero out the row itself.
@@ -470,19 +456,19 @@ namespace MatrixDemo.RTW
                 {
                     temp[r, c] = entries[r, c];
                 }
-                temp[r, r + cols] = 1;
+                temp[r, r + Cols] = 1;
             }
             // Perform Gausian elimination.
             temp.Reduce();
             // Copy the right hand side of the matrix into a return matrix.
-            Matrix ret = new Matrix(rows, cols);
+            Matrix ret = new Matrix(Rows, Cols);
             for (int r=0; r<Rows; r++)
             {
                 if (temp[r, r] == 0)
                     return null; // The left hand side of the matrix is not the identity, so the determinant does not exist.
                 for (int c=0; c<Cols; c++)
                 {
-                    ret[r, c] = temp[r, c + cols];
+                    ret[r, c] = temp[r, c + Cols];
                 }
             }
             return ret;
@@ -494,7 +480,58 @@ namespace MatrixDemo.RTW
         /// <returns>The transpose of this matrix.</returns>
         public Matrix Transpose()
         {
-            return MatrixFromSource(cols, rows, (int r, int c) => entries[c, r]);
+            return MatrixFromSource(Cols, Rows, (int r, int c) => entries[c, r]);
+        }
+
+        /// <summary>
+        /// Returns a String representation of this matrix.
+        /// </summary>
+        /// <returns>a String representation of this matrix.</returns>
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("[");
+            for (int r=0; r<Rows; r++)
+            {
+                if (r != 0)
+                    sb.Append("\n");
+                sb.Append("[");
+                for (int c=0; c<Cols; c++)
+                {
+                    if (c != 0)
+                        sb.Append(", ");
+                    sb.Append(entries[r, c]);
+                }
+                sb.Append("]");
+            }
+            sb.Append("]");
+            return sb.ToString();
+        }
+
+        /// <summary>
+        /// Returns the hash code for this matrix.
+        /// </summary>
+        /// <returns>The hash code used for hashmaps.  <note type="warning">This hash function is not cryptographically secure.</note></returns>
+        public override int GetHashCode()
+        {
+            return entries.GetHashCode();
+        }
+
+        /// <summary>
+        /// Returns true if this matrix is equal to the other matrix.
+        /// </summary>
+        /// <param name="obj">The object to compare to this matrix.</param>
+        /// <returns>True if the objects are equal, false otherwise.</returns>
+        public override bool Equals(object obj)
+        {
+            if (obj is Matrix m)
+            {
+                return entries.Equals(m.entries);
+            }
+            else
+            {
+                return false;
+            }
         }
 
     }
