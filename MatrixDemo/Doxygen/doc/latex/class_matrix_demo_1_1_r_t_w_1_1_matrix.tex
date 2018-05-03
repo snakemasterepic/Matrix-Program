@@ -13,7 +13,23 @@ The matrix class stores a matrix of doubles. It uses an indexer to access elemen
 \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix_ad2a320fd0c86551f34070679fd43433c}{Matrix}} (double\mbox{[},\mbox{]} e)
 \begin{DoxyCompactList}\small\item\em Creates a matrix and populates it with entries from a given array of doubles. The matrix is not backed by the 2-\/dimensional array of doubles, so changes in one will not affect the other. For a \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix}{Matrix}} backed by the array of doubles, use \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix_ac23641ac04b3c3baf14174bdf9049db2}{operator double\mbox{[},\mbox{]}}}. \end{DoxyCompactList}\item 
 double \mbox{[},\mbox{]} \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix_a9f6f8e0e7acfbdd55852f258daf68b8f}{Get\+Entries}} ()
-\begin{DoxyCompactList}\small\item\em Returns a 2-\/dimensional array of doubles reflecting the entries in the matrix. The resulting 2-\/dimensional array is not backed by the matrix, so changes in one will not affect the other. For a backed 2-\/dimensional array of doubles, use \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix_a0c737f7e6b54edac4d26b4f1c595ee92}{operator Matrix}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Returns a 2-\/dimensional array of doubles reflecting the entries in the matrix. The resulting 2-\/dimensional array is not backed by the matrix, so changes in one will not affect the other. For a backed 2-\/dimensional array of doubles, use \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix_a0c737f7e6b54edac4d26b4f1c595ee92}{operator Matrix}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix_a14fc1e8ce8136690364961901e7becf6}{Reduce}} ()
+\begin{DoxyCompactList}\small\item\em Converts this matrix to Reduced Row Echelon Form. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix}{Matrix}} \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix_ab5b22330a32e73b322522e9c60b8502e}{R\+R\+EF}} ()
+\begin{DoxyCompactList}\small\item\em Returns the Reduced Row Echelon form of this matrix. This matrix its4elf is unaltered. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix_a1bf322e5e6ff6ae935c74a91df5bb51c}{Determinant}} ()
+\begin{DoxyCompactList}\small\item\em Calculates the determinant of this matrix. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix}{Matrix}} \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix_a6d733a0dfeef17bf64c99671bc4cb116}{Inverse}} ()
+\begin{DoxyCompactList}\small\item\em Returns the inverse of this matrix if it exists. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix}{Matrix}} \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix_a2718067191d516f881e29baf49db7604}{Transpose}} ()
+\begin{DoxyCompactList}\small\item\em Returns the tramspose of this matrix. \end{DoxyCompactList}\item 
+override string \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix_a6dcaf1d6a6050cea143f68da4a802900}{To\+String}} ()
+\begin{DoxyCompactList}\small\item\em Returns a String representation of this matrix. \end{DoxyCompactList}\item 
+override int \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix_ad7f43b0fc8f78f4deb76238d99749d1d}{Get\+Hash\+Code}} ()
+\begin{DoxyCompactList}\small\item\em Returns the hash code for this matrix. \end{DoxyCompactList}\item 
+override bool \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix_ac0f3f4cf1a7f5d36aff55a94d7ae6c92}{Equals}} (object obj)
+\begin{DoxyCompactList}\small\item\em Returns true if this matrix is equal to the other matrix. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -65,6 +81,11 @@ Creates a zero matrix with the specified number of rows and columns.
 {\em cols} & the number of columns for the matrix.\\
 \hline
 \end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Argument\+Exception} & Thrown if either or both of the dimensions is negative.\\
+\hline
+\end{DoxyExceptions}
 \mbox{\Hypertarget{class_matrix_demo_1_1_r_t_w_1_1_matrix_ad2a320fd0c86551f34070679fd43433c}\label{class_matrix_demo_1_1_r_t_w_1_1_matrix_ad2a320fd0c86551f34070679fd43433c}} 
 \index{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix@{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix}!Matrix@{Matrix}}
 \index{Matrix@{Matrix}!Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix@{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix}}
@@ -88,6 +109,42 @@ Creates a matrix and populates it with entries from a given array of doubles. Th
 
 
 \subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_matrix_demo_1_1_r_t_w_1_1_matrix_a1bf322e5e6ff6ae935c74a91df5bb51c}\label{class_matrix_demo_1_1_r_t_w_1_1_matrix_a1bf322e5e6ff6ae935c74a91df5bb51c}} 
+\index{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix@{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix}!Determinant@{Determinant}}
+\index{Determinant@{Determinant}!Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix@{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix}}
+\subsubsection{\texorpdfstring{Determinant()}{Determinant()}}
+{\footnotesize\ttfamily double Matrix\+Demo.\+R\+T\+W.\+Matrix.\+Determinant (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Calculates the determinant of this matrix. 
+
+\begin{DoxyReturn}{Returns}
+the determinant of this matrix.
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_bad_dimension_exception}{Bad\+Dimension\+Exception}}} & Thrown when the matrix is not square.\\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{class_matrix_demo_1_1_r_t_w_1_1_matrix_ac0f3f4cf1a7f5d36aff55a94d7ae6c92}\label{class_matrix_demo_1_1_r_t_w_1_1_matrix_ac0f3f4cf1a7f5d36aff55a94d7ae6c92}} 
+\index{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix@{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix}!Equals@{Equals}}
+\index{Equals@{Equals}!Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix@{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix}}
+\subsubsection{\texorpdfstring{Equals()}{Equals()}}
+{\footnotesize\ttfamily override bool Matrix\+Demo.\+R\+T\+W.\+Matrix.\+Equals (\begin{DoxyParamCaption}\item[{object}]{obj }\end{DoxyParamCaption})}
+
+
+
+Returns true if this matrix is equal to the other matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The object to compare to this matrix.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the objects are equal, false otherwise.
+\end{DoxyReturn}
 \mbox{\Hypertarget{class_matrix_demo_1_1_r_t_w_1_1_matrix_a9f6f8e0e7acfbdd55852f258daf68b8f}\label{class_matrix_demo_1_1_r_t_w_1_1_matrix_a9f6f8e0e7acfbdd55852f258daf68b8f}} 
 \index{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix@{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix}!Get\+Entries@{Get\+Entries}}
 \index{Get\+Entries@{Get\+Entries}!Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix@{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix}}
@@ -106,6 +163,37 @@ A copy of the entries of the \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_ma
 
 
 \end{DoxySeeAlso}
+\mbox{\Hypertarget{class_matrix_demo_1_1_r_t_w_1_1_matrix_ad7f43b0fc8f78f4deb76238d99749d1d}\label{class_matrix_demo_1_1_r_t_w_1_1_matrix_ad7f43b0fc8f78f4deb76238d99749d1d}} 
+\index{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix@{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix}!Get\+Hash\+Code@{Get\+Hash\+Code}}
+\index{Get\+Hash\+Code@{Get\+Hash\+Code}!Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix@{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix}}
+\subsubsection{\texorpdfstring{Get\+Hash\+Code()}{GetHashCode()}}
+{\footnotesize\ttfamily override int Matrix\+Demo.\+R\+T\+W.\+Matrix.\+Get\+Hash\+Code (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the hash code for this matrix. 
+
+\begin{DoxyReturn}{Returns}
+The hash code used for hashmaps. $<$note type=\char`\"{}warning\char`\"{}$>$This hash function is not cryptographically secure.$<$/note$>$
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_matrix_demo_1_1_r_t_w_1_1_matrix_a6d733a0dfeef17bf64c99671bc4cb116}\label{class_matrix_demo_1_1_r_t_w_1_1_matrix_a6d733a0dfeef17bf64c99671bc4cb116}} 
+\index{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix@{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix}!Inverse@{Inverse}}
+\index{Inverse@{Inverse}!Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix@{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix}}
+\subsubsection{\texorpdfstring{Inverse()}{Inverse()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix}{Matrix}} Matrix\+Demo.\+R\+T\+W.\+Matrix.\+Inverse (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the inverse of this matrix if it exists. 
+
+\begin{DoxyReturn}{Returns}
+Returns the inverse of this matrix if it exists, null otherwise.
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_bad_dimension_exception}{Bad\+Dimension\+Exception}}} & Thrown when the matrix is not square.\\
+\hline
+\end{DoxyExceptions}
 \mbox{\Hypertarget{class_matrix_demo_1_1_r_t_w_1_1_matrix_ac23641ac04b3c3baf14174bdf9049db2}\label{class_matrix_demo_1_1_r_t_w_1_1_matrix_ac23641ac04b3c3baf14174bdf9049db2}} 
 \index{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix@{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix}!operator double\mbox{[},\mbox{]}@{operator double[,]}}
 \index{operator double\mbox{[},\mbox{]}@{operator double[,]}!Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix@{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix}}
@@ -274,6 +362,55 @@ m
 -m
 \end{DoxyCode}
  to it.
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_matrix_demo_1_1_r_t_w_1_1_matrix_a14fc1e8ce8136690364961901e7becf6}\label{class_matrix_demo_1_1_r_t_w_1_1_matrix_a14fc1e8ce8136690364961901e7becf6}} 
+\index{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix@{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix}!Reduce@{Reduce}}
+\index{Reduce@{Reduce}!Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix@{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix}}
+\subsubsection{\texorpdfstring{Reduce()}{Reduce()}}
+{\footnotesize\ttfamily void Matrix\+Demo.\+R\+T\+W.\+Matrix.\+Reduce (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Converts this matrix to Reduced Row Echelon Form. 
+
+\mbox{\Hypertarget{class_matrix_demo_1_1_r_t_w_1_1_matrix_ab5b22330a32e73b322522e9c60b8502e}\label{class_matrix_demo_1_1_r_t_w_1_1_matrix_ab5b22330a32e73b322522e9c60b8502e}} 
+\index{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix@{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix}!R\+R\+EF@{R\+R\+EF}}
+\index{R\+R\+EF@{R\+R\+EF}!Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix@{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix}}
+\subsubsection{\texorpdfstring{R\+R\+E\+F()}{RREF()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix}{Matrix}} Matrix\+Demo.\+R\+T\+W.\+Matrix.\+R\+R\+EF (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the Reduced Row Echelon form of this matrix. This matrix its4elf is unaltered. 
+
+\begin{DoxyReturn}{Returns}
+the reduced row echelon form of this matrix.
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_matrix_demo_1_1_r_t_w_1_1_matrix_a6dcaf1d6a6050cea143f68da4a802900}\label{class_matrix_demo_1_1_r_t_w_1_1_matrix_a6dcaf1d6a6050cea143f68da4a802900}} 
+\index{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix@{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix}!To\+String@{To\+String}}
+\index{To\+String@{To\+String}!Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix@{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix}}
+\subsubsection{\texorpdfstring{To\+String()}{ToString()}}
+{\footnotesize\ttfamily override string Matrix\+Demo.\+R\+T\+W.\+Matrix.\+To\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns a String representation of this matrix. 
+
+\begin{DoxyReturn}{Returns}
+a String representation of this matrix.
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_matrix_demo_1_1_r_t_w_1_1_matrix_a2718067191d516f881e29baf49db7604}\label{class_matrix_demo_1_1_r_t_w_1_1_matrix_a2718067191d516f881e29baf49db7604}} 
+\index{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix@{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix}!Transpose@{Transpose}}
+\index{Transpose@{Transpose}!Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix@{Matrix\+Demo\+::\+R\+T\+W\+::\+Matrix}}
+\subsubsection{\texorpdfstring{Transpose()}{Transpose()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_matrix_demo_1_1_r_t_w_1_1_matrix}{Matrix}} Matrix\+Demo.\+R\+T\+W.\+Matrix.\+Transpose (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the tramspose of this matrix. 
+
+\begin{DoxyReturn}{Returns}
+The transpose of this matrix.
 \end{DoxyReturn}
 
 

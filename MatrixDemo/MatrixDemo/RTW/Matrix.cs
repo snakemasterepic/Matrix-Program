@@ -96,8 +96,6 @@ namespace MatrixDemo.RTW
             entries = new double[rows, cols];
         }
 
-
-
         /// <summary>
         /// Creates a matrix and populates it with entries from a given array of doubles.  The matrix is not backed by the 2-dimensional array of doubles, so changes in one will not affect the other.  For a Matrix backed by the array of doubles, use <see cref="operator double[,]"/>.
         /// </summary>

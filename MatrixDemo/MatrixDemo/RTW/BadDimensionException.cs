@@ -16,21 +16,38 @@ namespace MatrixDemo.RTW
     public class BadDimensionException : Exception
     {
 
+        /// <summary>
+        /// Creates a new BadDimensionException.
+        /// </summary>
         public BadDimensionException() : base()
         {
 
         }
 
+        /// <summary>
+        /// Creates a new BadDimensionException with a specific message.
+        /// </summary>
+        /// <param name="message">the message to accompany this exception.</param>
         public BadDimensionException(String message) : base(message)
         {
 
         }
 
+        /// <summary>
+        /// Creates a new BadDimensionException with serialized info.
+        /// </summary>
+        /// <param name="sinfo">The serialization object containing serialization info.</param>
+        /// <param name="scontext">The object containing information about the serialization context.</param>
         public BadDimensionException(SerializationInfo sinfo, StreamingContext scontext) : base(sinfo,scontext)
         {
 
         }
 
+        /// <summary>
+        /// Creates a BadDimensionException with a specific error message and cause exception.
+        /// </summary>
+        /// <param name="message">The message to accompany this BadDimensionException.</param>
+        /// <param name="ex">The exception that caused this exception to occur.</param>
         public BadDimensionException(String message, Exception ex) : base(message,ex)
         {
 
