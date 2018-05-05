@@ -22,6 +22,9 @@ namespace MatrixTest
             Matrix m1 = new Matrix(3, 2);
             m1[2, 1] = 1;
             m1[0, 0] = 4;
+
+            //Testing Push capability. Trial #5 -- Adam
+            MatrixTest m5 = new MatrixTest(4, 2);
         }
 
         /// <summary>
