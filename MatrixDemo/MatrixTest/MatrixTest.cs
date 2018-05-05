@@ -2,11 +2,20 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MatrixDemo.RTW;
 
+/// <summary>
+/// Tests for the MatrixDemo.
+/// </summary>
 namespace MatrixTest
 {
+    /// <summary>
+    /// Runs unit tests for Matrix.
+    /// </summary>
     [TestClass]
     public class MatrixTest
     {
+        /// <summary>
+        /// Tests indexing with valid indexes.
+        /// </summary>
         [TestMethod]
         public void TestIndex()
         {
@@ -15,6 +24,9 @@ namespace MatrixTest
             m1[0, 0] = 4;
         }
 
+        /// <summary>
+        /// Tests to ensure that invalid indexes throw exceptions.
+        /// </summary>
         [TestMethod]
         [ExpectedException(typeof(IndexOutOfRangeException))]
         public void TestBadIndex()
@@ -23,6 +35,9 @@ namespace MatrixTest
             m1[3, 1] = 0;
         }
 
+        /// <summary>
+        /// Tests the backing of <see cref="MatrixDemo.RTW.Matrix.Matrix(double[,])"/>, <see cref="MatrixDemo.RTW.Matrix.GetEntries()"/>, <see cref="MatrixDemo.RTW.Matrix.operator double[,]"/>, and <see cref="MatrixDemo.RTW.Matrix.operator Matrix"/>.
+        /// </summary>
         [TestMethod]
         public void TestBacking()
         {
@@ -48,6 +63,8 @@ namespace MatrixTest
             d2[1, 0] = 1;
             Assert.AreEqual(1, m2[1, 0]);
         }
+
+        
 
     }
 }
