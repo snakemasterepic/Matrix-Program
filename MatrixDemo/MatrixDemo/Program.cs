@@ -16,7 +16,8 @@ namespace MatrixDemo
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new DemoView());
+            DemoController c = new DemoController();
+            Application.Run(c.View);
         }
     }
 }

@@ -229,7 +229,7 @@ namespace MatrixDemo.RTW
         public static Matrix operator -(Matrix lhs, Matrix rhs)
         {
             CheckDimensionsAddition(lhs, rhs);
-            return MatrixFromSource(lhs.Rows, rhs.Cols, (int r, int c) => lhs[r, c] + rhs[r, c]);
+            return MatrixFromSource(lhs.Rows, rhs.Cols, (int r, int c) => lhs[r, c] - rhs[r, c]);
         }
 
         /// <summary>
@@ -447,7 +447,7 @@ namespace MatrixDemo.RTW
         {
             CheckSquare();
             // Create a matrix with the left hand side being this matrix and the right hand side being the identity.
-            Matrix temp = new Matrix(Rows * 2, Cols);
+            Matrix temp = new Matrix(Rows, Cols * 2);
             for (int r=0; r<Rows; r++)
             {
                 for (int c=0; c<Cols; c++)
